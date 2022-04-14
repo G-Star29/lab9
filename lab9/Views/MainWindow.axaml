@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:lab9.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="800"
+		Width="1300" Height="800"
+        x:Class="lab9.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="lab9">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="*,50" ColumnDefinitions="400,*,*">
+		<TreeView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Items="{Binding Items}" HorizontalAlignment="Left">
+				<TreeView.ItemTemplate>
+					<TreeDataTemplate ItemsSource="{Binding Notes}">
+						<ContentControl TemplateApplied="LoadNodes">
+							<TreeViewItem PointerReleased="CheckCorrect" Header="{Binding AllPaths}"/>
+						</ContentControl>
+					</TreeDataTemplate>
+			</TreeView.ItemTemplate>
+		</TreeView>
+		<Carousel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="carousel"  Items="{Binding PathsNames}">
+			<Carousel.ItemTemplate>
+				<DataTemplate>
+					<Image Margin="10" Source="{Binding ImageFile}">
+						<ToolTip.Tip>
+							<TextBlock Classes="textblock" Text="{Binding PathImage}"/>
+						</ToolTip.Tip>
+					</Image>
+				</DataTemplate>
+			</Carousel.ItemTemplate>
+		</Carousel>
+		<Button Content="Previos" HorizontalContentAlignment="Center" FontSize="20" IsEnabled="{Binding ButtonEnable}" Name="GoBack" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+		</Button>
+		<Button Content="Next" HorizontalContentAlignment="Center" FontSize="20" IsEnabled="{Binding ButtonEnable}" Name="GoNext" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+		</Button>
+	</Grid>
+
+</Window>
