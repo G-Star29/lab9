@@ -41,7 +41,7 @@ namespace lab9.Models
         {
             try
             {
-                string[] Filter = new[] { ".ico", ".png", ".jpg", ".jpeg" };
+                string[] Filter = new[] { ".png", ".jpg", ".jpeg" };
 
                 IEnumerable<string> items = Directory.EnumerateDirectories(PathFull, "*", SearchOption.TopDirectoryOnly); 
                 IEnumerable<string> files = Directory.EnumerateFiles(PathFull).Where(file => Filter.Any(file.ToLower().EndsWith)).ToList(); 
